@@ -1,15 +1,17 @@
+import { useEffect } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import './index.css'
 import 'aos/dist/aos.css'; // Import AOS styles
 import AOS from 'aos';
+import PureCounter from "@srexi/purecounterjs";
 
-import {useEffect} from "react"
-import { Container, Row, Col } from "react-bootstrap"
-
-import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar";
 import SwiperSliderCustom from "./components/SwiperSliderCustom";
 import ServiceList from "./components/ServiceList";
+import CountList from "./components/CountList";
 const App = () => {
   const listCarousel = [
     {
@@ -37,7 +39,23 @@ const App = () => {
       subtitle: "Separated they live in Bookmarksgrove right at the coast"
     }
   ]
+
+  const listCount = [
+    {
+      total: 3919,
+      title: "Coffee"
+    },
+    {
+      total: 2831,
+      title: "Codes"
+    },
+    {
+      total: 1914,
+      title: "Project"
+    }
+  ]
   useEffect(() => {
+    new PureCounter();
     AOS.init({
       duration: 1000, // Animation duration
       easing: 'ease-in-out', // Easing function
@@ -51,7 +69,7 @@ const App = () => {
         <section className="about section p-0">
           <Container>
             <Row className="align-items-center justify-content-between">
-              <Col lg="7" className="mb-5 mb-lg-0 order-lg-2"  data-aos="fade-up" data-aos-delay="400">
+              <Col lg="7" className="mb-5 mb-lg-0 order-lg-2" data-aos="fade-up" data-aos-delay="400">
                 {/* <CarouselCustom listCarousel={listCarousel} /> */}
                 <SwiperSliderCustom slider={listCarousel} />
               </Col>
@@ -116,7 +134,37 @@ const App = () => {
         <section className="stats section light-background">
           <Container>
             <Row className="gy-4 justify-content-center">
-
+              <Col lg="5">
+                <div className="images-overlap">
+                  <img src="https://images.unsplash.com/photo-1702055157616-4261788a01d1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D" alt="image.jpg" className="img-fluid img-1" data-aos="fade-up" />
+                </div>
+              </Col>
+              <Col lg="4" className="ps-lg-5">
+                <span className="content-subtitle">Why Us</span>
+                <h2 className="content-title">Far far away Behind the Word Mountains</h2>
+                <p className="lead">
+                  Far far away, behind the word mountains, far from the countries
+                  Vokalia and Consonantia.
+                </p>
+                <p className="mb-5">
+                  There live the blind texts. Separated they live in Bookmarksgrove
+                  right at the coast of the Semantics, a large language ocean.
+                </p>
+                <CountList listCount={listCount} />
+              </Col>
+            </Row>
+          </Container>
+        </section>
+        <section className="blog-posts section">
+          <Container className="section-title" data-aos="fade-up">
+            <p>Recent Posts</p>
+            <h2>Blog Posts</h2>
+          </Container>
+          <Container>
+            <Row className="gy-4">
+              <Col md="6" lg="4">
+              
+              </Col>
             </Row>
           </Container>
         </section>
