@@ -11,9 +11,11 @@ import PureCounter from "@srexi/purecounterjs";
 import Navbar from "./components/Navbar";
 import SwiperSliderCustom from "./components/SwiperSliderCustom";
 import ServiceList from "./components/ServiceList";
+import ServiceItem from "./components/ServiceItem";
 import CountList from "./components/CountList";
 import BlogList from "./components/BlogList";
 import TabList from "./components/TabList";
+import Footer from "./components/Footer";
 const App = () => {
   const listCarousel = [
     {
@@ -123,7 +125,7 @@ const App = () => {
             <Row className="align-items-center justify-content-between">
               <Col lg="7" className="mb-5 mb-lg-0 order-lg-2" data-aos="fade-up" data-aos-delay="400">
                 {/* <CarouselCustom listCarousel={listCarousel} /> */}
-                <SwiperSliderCustom slider={listCarousel} activeIndex={activeIndex}/>
+                <SwiperSliderCustom slider={listCarousel} activeIndex={activeIndex} />
               </Col>
               <Col lg="4" className="order-lg-1">
                 <span className="section-subtitle" data-aos="fade-up">Welcome</span>
@@ -180,7 +182,7 @@ const App = () => {
         </section>
         <section className="services section light-background">
           <Container>
-            <ServiceList listServices={listServices} />
+            <ServiceList listServices={listServices} section={0} />
           </Container>
         </section>
         <section className="stats section light-background">
@@ -221,12 +223,44 @@ const App = () => {
             <Row className="gap-x-lg-4 justify-content-between">
               <TabList tabList={tabList} onTabClick={setActiveIndex} />
               <Col lg="8">
-                <SwiperSliderCustom slider={tabList} activeIndex={activeIndex}/>
+                <SwiperSliderCustom slider={tabList} activeIndex={activeIndex} />
               </Col>
             </Row>
           </Container>
         </section>
+        <section className="services-2 section">
+          <Row className="justify-content-center" data-aos="fade-up">
+            <Col md="6" lg="4">
+              <span className="content-subtitle">Our Services</span>
+              <h2 className="content-title">
+                Far far away, behind the word mountains, far from the countries
+                Vokalia
+              </h2>
+              <p className="lead">
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+              </p>
+              <p className="mb-5">
+                Separated they live in Bookmarksgrove right at the coast of the
+                Semantics, a large language ocean.
+              </p>
+              <p>
+                <a href="#" className="btn btn-get-started">Get Started</a>
+              </p>
+            </Col>
+            <Col md="6" lg="6" className="ps-lg-5">
+              <Row>
+                {listServices?.map((value,index) => (
+                  <Col key={index} md="6" lg="6" sm="6">
+                      <ServiceItem key={index} subtitle={value.subtitle} title={value.title} section={1}/>
+                  </Col>
+                ))}
+              </Row>
+            </Col>
+          </Row>
+        </section>
       </main>
+      <Footer />
     </>
   )
 }
