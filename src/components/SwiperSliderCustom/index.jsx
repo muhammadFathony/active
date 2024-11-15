@@ -1,9 +1,11 @@
+import {useRef, useEffect, act} from "react";
 import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay, } from 'swiper/modules';
-const Component = ({slider}) => {
+const Component = ({slider, activeIndex}) => {
+    const swiperRef = useRef(null);
     const swiperConfig = {
         loop: true,
         speed: 600,
@@ -26,8 +28,16 @@ const Component = ({slider}) => {
                 spaceBetween: 1,
             },
         },
-        modules: [Autoplay, Pagination]
+        modules: [Autoplay, Pagination],
+        onSwiper: (swiper) => {
+            swiperRef.current = swiper
+        }
     };
+    useEffect(() => {
+        if (swiperRef.current && typeof activeIndex === 'number') {
+            swiperRef.current.slideTo(activeIndex);
+        }
+    }, [activeIndex]);
     return(
         <>
         <Swiper {...swiperConfig}>
@@ -43,5 +53,6 @@ const Component = ({slider}) => {
 }
 Component.propTypes = {
     slider: PropTypes.array.isRequired,
+    activeIndex : PropTypes.number.isRequired
 };
 export default Component

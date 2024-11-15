@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,6 +12,8 @@ import Navbar from "./components/Navbar";
 import SwiperSliderCustom from "./components/SwiperSliderCustom";
 import ServiceList from "./components/ServiceList";
 import CountList from "./components/CountList";
+import BlogList from "./components/BlogList";
+import TabList from "./components/TabList";
 const App = () => {
   const listCarousel = [
     {
@@ -54,6 +56,56 @@ const App = () => {
       title: "Project"
     }
   ]
+  const currentBlog = [
+    {
+      category: "Development",
+      date: " July 20, 2020",
+      title: "There live the blind texts they live",
+      subtitle: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. ",
+      creator: "Winston Gold",
+      position: "Lead Product Designer",
+      img: "https://images.unsplash.com/photo-1692302998232-6ae11a9b64a1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D",
+      imgUser: "https://media.istockphoto.com/id/1618291225/id/foto/kecantikan-terengah-engah-foto-stok.webp?s=2048x2048&w=is&k=20&c=ucJcOred4Qgikpyrsg9tjrHmrEYrVDASwh4Ob1r8VFo="
+    },
+    {
+      category: "Development",
+      date: " July 20, 2020",
+      title: "There live the blind texts they live",
+      subtitle: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. ",
+      creator: "Winston Gold",
+      position: "Lead Product Designer",
+      img: "https://images.unsplash.com/photo-1692302998232-6ae11a9b64a1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D",
+      imgUser: "https://media.istockphoto.com/id/1618291225/id/foto/kecantikan-terengah-engah-foto-stok.webp?s=2048x2048&w=is&k=20&c=ucJcOred4Qgikpyrsg9tjrHmrEYrVDASwh4Ob1r8VFo="
+    },
+    {
+      category: "Development",
+      date: " July 20, 2020",
+      title: "There live the blind texts they live",
+      subtitle: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. ",
+      creator: "Winston Gold",
+      position: "Lead Product Designer",
+      img: "https://images.unsplash.com/photo-1692302998232-6ae11a9b64a1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D",
+      imgUser: "https://media.istockphoto.com/id/1618291225/id/foto/kecantikan-terengah-engah-foto-stok.webp?s=2048x2048&w=is&k=20&c=ucJcOred4Qgikpyrsg9tjrHmrEYrVDASwh4Ob1r8VFo="
+    }
+  ]
+  const tabList = [
+    {
+      title: "Modern and clean design",
+      subtitle: "Far far away, behind the word mountains, far from the countries .",
+      imgSrc: "https://images.unsplash.com/photo-1692302998232-6ae11a9b64a1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
+    },
+    {
+      title: "Sell Product",
+      subtitle: "Far far away, behind the word mountains, far from the countries .",
+      imgSrc: "https://images.unsplash.com/photo-1692302998232-6ae11a9b64a1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
+    },
+    {
+      title: "Success Every Day",
+      subtitle: "Far far away, behind the word mountains, far from the countries .",
+      imgSrc: "https://images.unsplash.com/photo-1692302998232-6ae11a9b64a1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D"
+    }
+  ]
+  const [activeIndex, setActiveIndex] = useState(0);
   useEffect(() => {
     new PureCounter();
     AOS.init({
@@ -71,7 +123,7 @@ const App = () => {
             <Row className="align-items-center justify-content-between">
               <Col lg="7" className="mb-5 mb-lg-0 order-lg-2" data-aos="fade-up" data-aos-delay="400">
                 {/* <CarouselCustom listCarousel={listCarousel} /> */}
-                <SwiperSliderCustom slider={listCarousel} />
+                <SwiperSliderCustom slider={listCarousel} activeIndex={activeIndex}/>
               </Col>
               <Col lg="4" className="order-lg-1">
                 <span className="section-subtitle" data-aos="fade-up">Welcome</span>
@@ -161,9 +213,15 @@ const App = () => {
             <h2>Blog Posts</h2>
           </Container>
           <Container>
-            <Row className="gy-4">
-              <Col md="6" lg="4">
-              
+            <BlogList listBlog={currentBlog} />
+          </Container>
+        </section>
+        <section className="tabs section light-background">
+          <Container>
+            <Row className="gap-x-lg-4 justify-content-between">
+              <TabList tabList={tabList} onTabClick={setActiveIndex} />
+              <Col lg="8">
+                <SwiperSliderCustom slider={tabList} activeIndex={activeIndex}/>
               </Col>
             </Row>
           </Container>
