@@ -1,8 +1,6 @@
-import {useRef, useEffect, act} from "react";
+import {useRef, useEffect} from "react";
 import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from "swiper/react";
-import 'swiper/css';
-import 'swiper/css/pagination';
 import { Pagination, Autoplay, } from 'swiper/modules';
 const Component = ({slider, activeIndex}) => {
     const swiperRef = useRef(null);

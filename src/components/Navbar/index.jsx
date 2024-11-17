@@ -1,4 +1,5 @@
 import { Container, Nav, Navbar } from "react-bootstrap"
+import { NavLink } from "react-router-dom";
 const Component = () => {
     return (
         <>
@@ -12,13 +13,13 @@ const Component = () => {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="navmenu ms-auto">
                                 <Nav.Item>
-                                    <Nav.Link href="/home">Home</Nav.Link>
+                                    <NavLink to="/">Home</NavLink>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link href="/services">Services</Nav.Link>
+                                    <Nav.Link href="/#">Services</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link href="/about">About</Nav.Link>
+                                    <NavLink to="/about">About</NavLink>
                                 </Nav.Item>
                             </Nav>
                         </Navbar.Collapse>
