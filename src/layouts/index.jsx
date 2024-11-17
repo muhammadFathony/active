@@ -11,7 +11,7 @@ const Component = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollToTop = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   useEffect(() => {
