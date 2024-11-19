@@ -7,13 +7,15 @@ import './index.css'
 import 'aos/dist/aos.css'; // Import AOS styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { BreadcrumbsProvider } from "./context/BreadcrumbsContext";
 const App = () => {
- 
   return (
     <>
-      <RouterProvider 
-        router={router} 
-      />  
+      <BreadcrumbsProvider>
+        <RouterProvider
+          router={router}
+        />
+      </BreadcrumbsProvider>
     </>
   )
 }

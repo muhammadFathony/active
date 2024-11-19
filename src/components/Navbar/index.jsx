@@ -16,7 +16,7 @@ const Component = () => {
                                     <NavLink to="/">Home</NavLink>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link href="/#">Services</Nav.Link>
+                                    <NavLink to="/services">Services</NavLink>
                                 </Nav.Item>
                                 <Nav.Item>
                                     <NavLink to="/about">About</NavLink>

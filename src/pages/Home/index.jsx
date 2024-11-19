@@ -101,7 +101,6 @@ const Component = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
         <>
-            <main className="main">
                 <section className="about section p-2">
                     <Container>
                         <Row className="align-items-center justify-content-between">
@@ -241,7 +240,6 @@ const Component = () => {
                         </Col>
                     </Row>
                 </section>
-            </main>
         </>
     )
 }

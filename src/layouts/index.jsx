@@ -6,14 +6,18 @@ import PureCounter from "@srexi/purecounterjs";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-
+import BreadcrumbCustom from "../components/BreadcrumbCustom";
+import { useBreadcrumb } from "../context/BreadcrumbsContext";
 const Component = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const { breadcrumbs } = useBreadcrumb();
+
   const scrollToTop = (e) => {
     e.preventDefault()
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
   useEffect(() => {
     new PureCounter();
     AOS.init({
@@ -38,14 +42,18 @@ const Component = () => {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <main className="main">
+        {location.pathname !== "/" && breadcrumbs.length > 0 && (
+          <BreadcrumbCustom breadcrumbs={breadcrumbs}/>
+        )}
+        <Outlet />
+      </main>
       <Footer />
       <a
         href="#"
         onClick={scrollToTop}
-        className={`scroll-top d-flex align-items-center justify-content-center ${
-          isScrolled ? "active" : ""
-        }`}
+        className={`scroll-top d-flex align-items-center justify-content-center ${isScrolled ? "active" : ""
+          }`}
       >
         <i className="bi bi-arrow-up-short"></i>
       </a>

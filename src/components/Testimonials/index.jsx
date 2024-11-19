@@ -31,7 +31,7 @@ const Component = ({ slider }) => {
             <Swiper {...swiperConfig}>
                 {slider.map((value, index) => (
                     <SwiperSlide key={index}>
-                        <div className="testimonials mx-auto">
+                        <div className="testimonial mx-auto">
                             <figure className="img-wrap">
                                 <img src={value.imgSrc} alt="img.jpg" className="img-fluid" />
                             </figure>
